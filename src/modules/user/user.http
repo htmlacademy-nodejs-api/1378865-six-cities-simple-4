@@ -27,21 +27,21 @@ Content-Type: application/json
 
 ## Отправка аватарки пользователю
 
-POST http://localhost:5000/users/648d49b956180852b32c6120/avatar HTTP/1.1
+POST http://localhost:5000/users/6492d43517d2e5a5496dfe18/avatar HTTP/1.1
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IlZpdGFseUBtYWlsLnJ1IiwiaWQiOiI2NDhkNDliOTU2MTgwODUyYjMyYzYxMjAiLCJpYXQiOjE2ODY5ODEwNjgsImV4cCI6MTY4NzE1Mzg2OH0.sxent0XizSGMOjKs_DpESXDHfLK3C7P4rjWdOGBlbNs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IlZpdGFseUBtYWlsLnJ1IiwiaWQiOiI2NDkyZDQzNTE3ZDJlNWE1NDk2ZGZlMTgiLCJpYXQiOjE2ODczNDQyMTgsImV4cCI6MTY4NzUxNzAxOH0.Rwjez_RNPUL9PMBXjUTFP_MomLlxIJorCjDJLIb7M9M
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="avatarPath"; filename="123.png"
 Content-Type: image/png
 
 < ../../../static/default-avatar.jpg
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 ###
 
 ## Проверить токен пользователя
 GET http://localhost:5000/users/login HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IlZpdGFseUBtYWlsLnJ1IiwiaWQiOiI2NDdmMjg3MjlkYzJhMWEzNjRkOWY1MTQiLCJpYXQiOjE2ODY3Mzc3MzcsImV4cCI6MTY4NjkxMDUzN30.0unNZjwSTorJkPj3fXyRhq9s92dyWt1inLLD25gdk3w
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IlZpdGFseUBtYWlsLnJ1IiwiaWQiOiI2NDkyZDQzNTE3ZDJlNWE1NDk2ZGZlMTgiLCJpYXQiOjE2ODczNDQyMTgsImV4cCI6MTY4NzUxNzAxOH0.Rwjez_RNPUL9PMBXjUTFP_MomLlxIJorCjDJLIb7M9M
 
 ###

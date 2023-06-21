@@ -11,6 +11,7 @@ import { CityData } from '../../constants/city.js';
 import { City } from 'types';
 
 const DEFAULT_DB_PORT = '27017';
+const DEFAULT_CITY_COUNT = 0;
 
 export default class ImportCitiesCommand implements CliCommandInterface {
   public readonly name = '--import-cities';
@@ -28,7 +29,7 @@ export default class ImportCitiesCommand implements CliCommandInterface {
     this.cityService = new CityService(this.logger, CityModel);
     this.databaseService = new MongoClientService(this.logger);
     this.citiesArray = Object.values(CityData);
-    this.cityCount = 0;
+    this.cityCount = DEFAULT_CITY_COUNT;
   }
 
   private async importSites() {

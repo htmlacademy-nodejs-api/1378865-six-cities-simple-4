@@ -6,13 +6,13 @@ Content-Type: application/json
 ###
 
 ## Получить детальную информацию по одному городу
-GET http://localhost:5000/cites/647745f69cbf78edb8c64aaa HTTP/1.1
+GET http://localhost:5000/cites/6492d0ad4ab772e816b13f22 HTTP/1.1
 Content-Type: application/json
 
 ###
 
 ## Получить список предложений по аренде по одному городу
-GET http://localhost:5000/cites/647745f69cbf78edb8c64aaa/offers HTTP/1.1
+GET http://localhost:5000/cites/6492d0ad4ab772e816b13f22/offers HTTP/1.1
 Content-Type: application/json
 
 ###

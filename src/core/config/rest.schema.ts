@@ -3,6 +3,13 @@ import validator from 'convict-format-with-validator';
 
 convict.addFormats(validator);
 
+const DEFAULT_PORT = 5000;
+const DEFAULT_DB_HOST = '127.0.0.1';
+const DEFAULT_DB_PORT = '27017';
+const DEFAULT_DB_NAME = 'buy-and-sell';
+const DEFAULT_HOST = 'localhost';
+const DEFAULT_STATIC_DIRECTORY_PATH = 'static';
+
 export type RestSchema = {
   PORT: number;
   SALT: string;
@@ -22,7 +29,7 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'Port for incoming connections',
     format: 'port',
     env: 'PORT',
-    default: 5000,
+    default: DEFAULT_PORT,
   },
   SALT: {
     doc: 'Salt for password hash',
@@ -34,7 +41,7 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'IP dress of the database server (MongoDB)',
     format: 'ipaddress',
     env: 'DB_HOST',
-    default: '127.0.0.1',
+    default: DEFAULT_DB_HOST,
   },
   DB_USER: {
     doc: 'Username to connect to the database',
@@ -52,13 +59,13 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'Port to connect to the database (MongoDB)',
     format: 'port',
     env: 'DB_PORT',
-    default: '27017',
+    default: DEFAULT_DB_PORT,
   },
   DB_NAME: {
     doc: 'Database name (MongoDB)',
     format: String,
     env: 'DB_NAME',
-    default: 'buy-and-sell',
+    default: DEFAULT_DB_NAME,
   },
   UPLOAD_DIRECTORY: {
     doc: 'Directory for upload files',
@@ -76,12 +83,12 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'Host where started service',
     format: String,
     env: 'HOST',
-    default: 'localhost'
+    default: DEFAULT_HOST
   },
   STATIC_DIRECTORY_PATH: {
     doc: 'Path to directory with static resources',
     format: String,
     env: 'STATIC_DIRECTORY_PATH',
-    default: 'static'
+    default: DEFAULT_STATIC_DIRECTORY_PATH
   },
 });

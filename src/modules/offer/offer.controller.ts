@@ -19,7 +19,7 @@ import { ValidateObjectIdMiddleware } from '../../core/middlewares/validate-obje
 import { ValidateDtoMiddleware } from '../../core/middlewares/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '../../core/middlewares/document-exists.middleware.js';
 import { PrivateRouteMiddleware } from '../../core/middlewares/private-route.middleware.js';
-import { CheckUserMatchInOfferMiddleware } from '../../core/middlewares/CheckUserMatchInOffer.middleware.js';
+import { CheckUserMatchInOfferMiddleware } from '../../core/middlewares/check-user-match-in-offer.middleware.js';
 import OfferPreviewImageRdo from './rdo/offer-preview-image.rdo.js';
 import { UploadFileMiddleware } from '../../core/middlewares/upload-file.middleware.js';
 import { ConfigInterface } from '../../core/config/config.interface.js';

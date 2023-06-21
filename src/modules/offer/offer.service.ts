@@ -6,7 +6,11 @@ import { OfferServiceInterface } from './offer-service.interface';
 import { OfferEntity } from './offer.entity';
 import CreateOfferDto from './dto/create-offer.dto';
 import UpdateOfferDto from './dto/update-offer.dto';
-import { DEFAULT_OFFER_COUNT, DEFAULT_OFFER_IMAGES } from './offer.constant.js';
+import {
+  DEFAULT_OFFER_COUNT,
+  DEFAULT_OFFER_IMAGES,
+  STEP_TO_INCREASE_COMMENTS,
+} from './offer.constant.js';
 import { SortType } from '../../types/sort-type.enum.js';
 import { getRandomItem } from '../../core/helpers/index.js';
 
@@ -49,7 +53,7 @@ export default class OfferService implements OfferServiceInterface {
     const limit = count ?? DEFAULT_OFFER_COUNT;
 
     return this.offerModel
-      .find({ city: cityId }, {}, { limit })
+      .find({ cityId }, {}, { limit })
       .populate(['userId', 'cityId'])
       .exec();
   }
@@ -74,7 +78,7 @@ export default class OfferService implements OfferServiceInterface {
         offerId,
         {
           $inc: {
-            commentCount: 1,
+            commentCount: STEP_TO_INCREASE_COMMENTS,
           },
         },
         { new: true },

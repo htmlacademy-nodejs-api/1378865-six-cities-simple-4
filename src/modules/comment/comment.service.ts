@@ -7,6 +7,8 @@ import { CommentEntity } from './comment.entity.js';
 import { COMMENT_COUNT } from './comment.constant.js';
 import { SortType } from '../../types/sort-type.enum.js';
 import mongoose from 'mongoose';
+import { FIRST_ARRAY_ELEMENT } from '../../constants/index.js';
+
 const ObjectId = mongoose.Types.ObjectId;
 
 @injectable()
@@ -36,17 +38,16 @@ export default class CommentService implements CommentServiceInterface {
   }
 
   public async calcRating(offerId: string): Promise<number | undefined> {
-    const aggregatedComments = await this.commentModel
-      .aggregate([
-        { $match: { offerId: new ObjectId(offerId) } },
-        {
-          $group: {
-            _id: '$offerId',
-            avgRating: { $avg: '$rating' },
-          },
+    const aggregatedComments = await this.commentModel.aggregate([
+      { $match: { offerId: new ObjectId(offerId) } },
+      {
+        $group: {
+          _id: '$offerId',
+          avgRating: { $avg: '$rating' },
         },
-      ]);
+      },
+    ]);
 
-    return aggregatedComments[0]?.avgRating;
+    return aggregatedComments[FIRST_ARRAY_ELEMENT]?.avgRating;
   }
 }

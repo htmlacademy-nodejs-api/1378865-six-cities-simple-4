@@ -3,6 +3,9 @@ import { createReadStream } from 'node:fs';
 import { FileReaderInterface } from './file-reader.interface.js';
 import { CHUNK_SIZE } from '../../constants/index.js';
 
+const FIRST_ARRAY_ELEMENT = 0;
+const LINE_POSITION_STEP = 1;
+
 export default class TSVFileReader extends EventEmitter implements FileReaderInterface {
   constructor(public filename: string) {
     super();
@@ -21,8 +24,8 @@ export default class TSVFileReader extends EventEmitter implements FileReaderInt
     for await (const chunk of stream) {
       remainingData += chunk.toString();
 
-      while ((nextLinePosition = remainingData.indexOf('\n')) >= 0) {
-        const completeRow = remainingData.slice(0, nextLinePosition + 1);
+      while ((nextLinePosition = remainingData.indexOf('\n')) >= FIRST_ARRAY_ELEMENT) {
+        const completeRow = remainingData.slice(FIRST_ARRAY_ELEMENT, nextLinePosition + LINE_POSITION_STEP);
         remainingData = remainingData.slice(++nextLinePosition);
         importedRowCount++;
 

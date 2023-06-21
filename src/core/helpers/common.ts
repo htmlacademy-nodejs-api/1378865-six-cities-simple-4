@@ -2,18 +2,21 @@ import * as crypto from 'node:crypto';
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import * as jose from 'jose';
 import { ValidationError } from 'class-validator';
-import { JWTPayloadType } from '../../types/jwtPayload.type.js';
+import { JWTPayloadType } from '../../types/jwt-payload.type.js';
 import { ValidationErrorField } from '../../types/validation-error-field.type.js';
 import { ServiceError } from '../../types/service-error.enum.js';
 import { UnknownRecord } from '../../types/unknown-record.type.js';
 import { DEFAULT_STATIC_IMAGES } from '../../app/rest.constant.js';
+
+const ALGORITHM = 'sha256';
+const CODING_STANDARD = 'utf-8';
 
 export function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : '';
 }
 
 export const createSHA256 = (line: string, salt: string): string => {
-  const shaHasher = crypto.createHmac('sha256', salt);
+  const shaHasher = crypto.createHmac(ALGORITHM, salt);
   return shaHasher.update(line).digest('hex');
 };
 
@@ -42,7 +45,7 @@ export async function createJWT(
     .setProtectedHeader({ alg: algorithm })
     .setIssuedAt()
     .setExpirationTime('2d')
-    .sign(crypto.createSecretKey(jwtSecret, 'utf-8'));
+    .sign(crypto.createSecretKey(jwtSecret, CODING_STANDARD));
 }
 
 export function transformErrors(errors: ValidationError[]): ValidationErrorField[] {

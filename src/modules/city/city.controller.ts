@@ -42,7 +42,7 @@ export default class CityController extends Controller {
     this.addRoute({
       path: '/:cityId/offers',
       method: HttpMethod.Get,
-      handler: this.getOffersFromCategory,
+      handler: this.getOffersFromCity,
       middlewares: [
         new ValidateObjectIdMiddleware('cityId'),
         new DocumentExistsMiddleware(this.cityService, 'City', 'cityId'),
@@ -66,7 +66,7 @@ export default class CityController extends Controller {
     this.ok(res, fillDTO(CityRdo, city));
   }
 
-  public async getOffersFromCategory(
+  public async getOffersFromCity(
     {
       params,
       query,

@@ -14,12 +14,11 @@ import LoginUserDto from './dto/login-user.dto.js';
 import { ValidateDtoMiddleware } from '../../core/middlewares/validate-dto.middleware.js';
 import { ValidateObjectIdMiddleware } from '../../core/middlewares/validate-objectid.middleware.js';
 import { UploadFileMiddleware } from '../../core/middlewares/upload-file.middleware.js';
-import UpdateUserDto from './dto/update-user.dto.js';
 import { UnknownRecord } from '../../types/unknown-record.type.js';
 import { JWT_ALGORITHM } from './user.constant.js';
 import LoggedUserRdo from './rdo/logged-user.rdo.js';
 import { PrivateRouteMiddleware } from '../../core/middlewares/private-route.middleware.js';
-import { CheckUserMatchMiddleware } from '../../core/middlewares/CheckUserMatch.middleware.js';
+import { CheckUserMatchMiddleware } from '../../core/middlewares/check-user-match.middleware.js';
 
 const USER_CONTROLLER = 'UserController';
 
@@ -57,7 +56,6 @@ export default class UserController extends Controller {
           this.userService,
           'У пользователя нет прав редактировать данного пользователя.',
         ),
-        new ValidateDtoMiddleware(UpdateUserDto),
         new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatarPath'),
       ],
     });
@@ -105,7 +103,7 @@ export default class UserController extends Controller {
 
   public async uploadAvatar(req: Request, res: Response) {
     const { userId } = req.params;
-
+    console.log('userId', userId);
     const updatedUser = await this.userService.updateById(userId, {
       avatarPath: req.file?.filename,
     });

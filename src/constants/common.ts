@@ -1,2 +1,2 @@
 export const CHUNK_SIZE = 1024 * 16;
-export const EMAIL_REG_EXP = /^([\w-\\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+export const FIRST_ARRAY_ELEMENT = 0;

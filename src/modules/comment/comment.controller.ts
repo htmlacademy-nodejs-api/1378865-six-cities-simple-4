@@ -10,18 +10,20 @@ import { HttpMethod } from '../../types/http-method.enum.js';
 import { fillDTO } from '../../core/helpers/index.js';
 import CommentRdo from './rdo/comment.rdo.js';
 import { ValidateDtoMiddleware } from '../../core/middlewares/validate-dto.middleware.js';
-import { MINIMUM_RATING, RATING_PRECISION } from '../../constants/rating.js';
 import { PrivateRouteMiddleware } from '../../core/middlewares/private-route.middleware.js';
 import { ConfigInterface } from '../../core/config/config.interface.js';
 import { RestSchema } from '../../core/config/rest.schema.js';
+import { MINIMUM_RATING, RATING_PRECISION } from './comment.constant.js';
 
 const COMMENT_CONTROLLER = 'CommentController';
 
 export default class CommentController extends Controller {
   constructor(
     @inject(AppComponent.LoggerInterface) logger: LoggerInterface,
-    @inject(AppComponent.CommentServiceInterface) private readonly commentService: CommentServiceInterface,
-    @inject(AppComponent.OfferServiceInterface) private readonly offerService: OfferServiceInterface,
+    @inject(AppComponent.CommentServiceInterface)
+    private readonly commentService: CommentServiceInterface,
+    @inject(AppComponent.OfferServiceInterface)
+    private readonly offerService: OfferServiceInterface,
     @inject(AppComponent.ConfigInterface) configService: ConfigInterface<RestSchema>,
   ) {
     super(logger, configService);

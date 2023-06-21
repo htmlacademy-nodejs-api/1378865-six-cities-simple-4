@@ -20,17 +20,42 @@ import {
 } from 'class-validator';
 import { Location } from './location.dto.js';
 import { Type } from 'class-transformer';
-import { RATING_PRECISION } from '../../../constants/rating.js';
+import {
+  MAXIMUM_RATING,
+  MINIMUM_RATING,
+  RATING_PRECISION,
+} from '../../comment/comment.constant.js';
+import {
+  MAXIMUM_OFFER_BEDROOMS,
+  MAXIMUM_OFFER_DESCRIPTION_LENGTH,
+  MAXIMUM_OFFER_GUESTS,
+  MAXIMUM_OFFER_PRICE,
+  MAXIMUM_OFFER_TITLE_LENGTH,
+  MINIMUM_OFFER_BEDROOMS,
+  MINIMUM_OFFER_DESCRIPTION_LENGTH,
+  MINIMUM_OFFER_GUESTS,
+  MINIMUM_OFFER_PRICE,
+  MINIMUM_OFFER_TITLE_LENGTH,
+  REQUIRED_IMAGE_ARRAY_LENGTH,
+} from '../offer.constant.js';
 
 export default class UpdateOfferDto {
   @IsOptional()
-  @MinLength(10, { message: 'Minimum title length must be 10' })
-  @MaxLength(100, { message: 'Maximum title length must be 100' })
+  @MinLength(MINIMUM_OFFER_TITLE_LENGTH, {
+    message: `Minimum title length must be ${MINIMUM_OFFER_TITLE_LENGTH}`,
+  })
+  @MaxLength(MAXIMUM_OFFER_TITLE_LENGTH, {
+    message: `Maximum title length must be ${MAXIMUM_OFFER_TITLE_LENGTH}`,
+  })
   public title?: string;
 
   @IsOptional()
-  @MinLength(20, { message: 'Minimum description length must be 20' })
-  @MaxLength(1024, { message: 'Maximum description length must be 1024' })
+  @MinLength(MINIMUM_OFFER_DESCRIPTION_LENGTH, {
+    message: `Minimum description length must be ${MINIMUM_OFFER_DESCRIPTION_LENGTH}`,
+  })
+  @MaxLength(MAXIMUM_OFFER_DESCRIPTION_LENGTH, {
+    message: `Maximum description length must be ${MAXIMUM_OFFER_DESCRIPTION_LENGTH}`,
+  })
   public description?: string;
 
   @IsOptional()
@@ -43,8 +68,8 @@ export default class UpdateOfferDto {
 
   @IsOptional()
   @IsArray()
-  @ArrayMinSize(6)
-  @ArrayMaxSize(6)
+  @ArrayMinSize(REQUIRED_IMAGE_ARRAY_LENGTH)
+  @ArrayMaxSize(REQUIRED_IMAGE_ARRAY_LENGTH)
   public images?: [string, string, string, string, string, string];
 
   @IsOptional()
@@ -60,20 +85,20 @@ export default class UpdateOfferDto {
 
   @IsOptional()
   @IsInt({ message: 'Field bedrooms must be an integer' })
-  @Min(1, { message: 'Minimum bedrooms is 1' })
-  @Max(8, { message: 'Maximum bedrooms is 8' })
+  @Min(MINIMUM_OFFER_BEDROOMS, { message: `Minimum bedrooms is ${MINIMUM_OFFER_BEDROOMS}` })
+  @Max(MAXIMUM_OFFER_BEDROOMS, { message: `Maximum bedrooms is ${MAXIMUM_OFFER_BEDROOMS}` })
   public bedrooms?: number;
 
   @IsOptional()
   @IsInt({ message: 'Field maxGuests must be an integer' })
-  @Min(1, { message: 'Minimum maxGuests is 1' })
-  @Max(10, { message: 'Maximum maxGuests is 10' })
+  @Min(MINIMUM_OFFER_GUESTS, { message: `Minimum maxGuests is ${MINIMUM_OFFER_GUESTS}` })
+  @Max(MAXIMUM_OFFER_GUESTS, { message: `Maximum maxGuests is ${MAXIMUM_OFFER_GUESTS}` })
   public maxGuests?: number;
 
   @IsOptional()
   @IsInt({ message: 'Field price must be an integer' })
-  @Min(100, { message: 'Minimum price is 100' })
-  @Max(100000, { message: 'Maximum price is 100000' })
+  @Min(MINIMUM_OFFER_PRICE, { message: `Minimum price is ${MINIMUM_OFFER_PRICE}` })
+  @Max(MAXIMUM_OFFER_PRICE, { message: `Maximum price is ${MAXIMUM_OFFER_PRICE}` })
   public price?: number;
 
   @IsOptional()
@@ -96,7 +121,7 @@ export default class UpdateOfferDto {
     { maxDecimalPlaces: RATING_PRECISION },
     { message: `Допускается максимум ${RATING_PRECISION} числел после запятой` },
   )
-  @Min(1, { message: 'Minimum rating is 1' })
-  @Max(5, { message: 'Maximum rating is 5' })
+  @Min(MINIMUM_RATING, { message: `Minimum rating is ${MINIMUM_RATING}` })
+  @Max(MAXIMUM_RATING, { message: `Maximum rating is ${MAXIMUM_RATING}` })
   public rating?: number;
 }

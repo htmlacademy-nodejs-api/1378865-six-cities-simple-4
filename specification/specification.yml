@@ -29,7 +29,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/user/userCreate.yml'
+              $ref: './schemas/user/user-create.yml'
         required: true
 
       responses:
@@ -38,7 +38,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/user/userCreated.yml'
+                $ref: './schemas/user/user-created.yml'
 
         '409':
           description: User with email «email» exists.
@@ -55,7 +55,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/user/userLogin.yml'
+              $ref: './schemas/user/user-login.yml'
         required: true
 
       responses:
@@ -110,7 +110,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/user/userValid.yml'
+                $ref: './schemas/user/user-valid.yml'
 
         '401':
           description: Пользователь не авторизован.
@@ -155,7 +155,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './schemas/offer/offerListItem.yml'
+                  $ref: './schemas/offer/offer-list-Item.yml'
 
     post:
       tags:
@@ -168,7 +168,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/offer/offerCreate.yml'
+              $ref: './schemas/offer/offer-create.yml'
         required: true
 
       responses:
@@ -178,7 +178,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: './schemas/offer/offerCreate.yml'
+                  - $ref: './schemas/offer/offer-create.yml'
                   - type: object
                     properties:
                       commentCount:
@@ -217,7 +217,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: './schemas/offer/offerCreate.yml'
+                  - $ref: './schemas/offer/offer-create.yml'
                   - type: object
                     properties:
                       commentCount:
@@ -227,7 +227,7 @@ paths:
                         type: string
                         example: 12.3.23
                       host:
-                        $ref: './schemas/user/userValid.yml'
+                        $ref: './schemas/user/user-valid.yml'
         '404':
           description: Offer with id {offerId} not found.
 
@@ -249,7 +249,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/offer/offerCreate.yml'
+              $ref: './schemas/offer/offer-create.yml'
         required: true
 
       responses:
@@ -259,7 +259,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: './schemas/offer/offerCreate.yml'
+                  - $ref: './schemas/offer/offer-create.yml'
                   - type: object
                     properties:
                       commentCount:
@@ -503,7 +503,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './schemas/offer/offerListItem.yml'
+                  $ref: './schemas/offer/offer-list-Item.yml'
 
         '404':
           description: City with id {cityId} not found.
